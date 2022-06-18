@@ -25,6 +25,7 @@ Portfolio
 </div>
 @endif
 
+
 <form method="post" action="/portfolio/check">
     @csrf
     <input type="text" name="cover_item" id="cover_item" placeholder="Input Cover URL" class="form-control"><br>
@@ -35,13 +36,35 @@ Portfolio
 </form>
 <br>
 
-@foreach($portfolio as $el)
-<div class="alert alert-warning">
-    <h3>{{ $el->cover_item }}</h3>
-    <b>{{ $el->link_item }}</b>
-    <p>{{ $el->description_item }}</p>
+<div class="album py-5 bg-dark">
+    <div class="container">
+
+        <div class="row">
+            @foreach($portfolio as $el)
+            <div class="col-md-4">
+                <div class="card mb-4 box-shadow">
+                    <img class="card-img-top"
+                        data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail"
+                        alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;"
+                        src="{{ $el->cover_item }}" data-holder-rendered="true">
+                    <div class="card-body bg-warning">
+                        <p class="card-text">{{ $el->description_item }}</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+
+                                <a href="{{ $el->link_item }}" class="btn btn-danger" target="_blank">View</a>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+            @endforeach
+        </div>
+    </div>
 </div>
-@endforeach
-
-
 @endsection
